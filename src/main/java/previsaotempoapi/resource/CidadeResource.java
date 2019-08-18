@@ -1,9 +1,12 @@
 package previsaotempoapi.resource;
 
+import java.io.OutputStream;
 import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,21 @@ import previsaotempoapi.service.CidadeService;
 public class CidadeResource {
 	@Autowired
 	private CidadeService cidadeService;
-	
+	static String apiID = "b6907d289e10d714a6e88b30761fae22";
+	static String baseUrlApi = "https://openweathermap.org/data/2.5/find?q=";
+
+	@RequestMapping(method=RequestMethod.GET)
+	public OutputStream findCity(
+		@RequestParam(value="cityName") String cityName
+	) throws Exception {
+		URL url = new URL(baseUrlApi + cityName + "&appid=" + apiID);
+		HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
+		connection.setRequestProperty("Content-Type", "text/json");
+		connection.setDoOutput(true);
+		return connection.getOutputStream();
+	}
+
 	@RequestMapping(value="/lista", method=RequestMethod.GET)
 	public List<CidadeDTO> findAll() throws ObjectNotFoundException {
 		List<Cidade> cidades = cidadeService.findAll();

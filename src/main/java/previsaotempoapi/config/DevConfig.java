@@ -14,20 +14,20 @@ import previsaotempoapi.service.DBService;
 @Profile("dev")
 public class DevConfig {
 
-	@Autowired
-	private DBService dbService;
+//	@Autowired
+//	private DBService dbService;
 	
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
 	
-	@Bean
-	public boolean instantiateDatabase() throws ParseException {
-		
-		if (!"create".equals(strategy)) {
-			return false;
-		}
-		
-		dbService.instantiateTestDataBase();
-		return true;
-	}
+//	@Bean
+//	public boolean instantiateDatabase() throws ParseException {
+//
+//		if (!"create".equals(strategy)) {
+//			return false;
+//		}
+//
+////		dbService.instantiateTestDataBase();
+//		return true;
+//	}
 }
