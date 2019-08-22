@@ -1,8 +1,8 @@
-package previsaotempoapi.dto;
+package previsaotempoapi.cidade;
 
 import java.io.Serializable;
 
-import previsaotempoapi.domain.Cidade;
+import previsaotempoapi.cidade.Cidade;
 
 public class CidadeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package previsaotempoapi.resource;
+package previsaotempoapi.cidade;
 
 import java.io.OutputStream;
 import java.net.URI;
@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javassist.tools.rmi.ObjectNotFoundException;
-import previsaotempoapi.domain.Cidade;
-import previsaotempoapi.dto.CidadeDTO;
-import previsaotempoapi.service.CidadeService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -32,12 +29,13 @@ import previsaotempoapi.service.CidadeService;
 public class CidadeResource {
 	@Autowired
 	private CidadeService cidadeService;
+
 	static String apiID = "b6907d289e10d714a6e88b30761fae22";
 	static String baseUrlApi = "https://openweathermap.org/data/2.5/find?q=";
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="find", method=RequestMethod.GET)
 	public OutputStream findCity(
-		@RequestParam(value="cityName") String cityName
+	        @RequestParam("cityName") String cityName
 	) throws Exception {
 		URL url = new URL(baseUrlApi + cityName + "&appid=" + apiID);
 		HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
