@@ -11,9 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import javassist.tools.rmi.ObjectNotFoundException;
-import previsaotempoapi.cidade.Cidade;
-import previsaotempoapi.cidade.CidadeDTO;
-import previsaotempoapi.cidade.CidadeRepository;
 
 @Service
 public class CidadeService {

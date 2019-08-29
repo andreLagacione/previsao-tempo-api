@@ -30,36 +30,10 @@ import previsaotempoapi.commons.services.exceptions.HttpBadRequestException;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value="/cidades")
+@RequestMapping(value = "/cidades")
 public class CidadeResource {
 	@Autowired
 	private CidadeService cidadeService;
-
-	final String apiID = "b6907d289e10d714a6e88b30761fae22";
-	final String baseUrlApi = "https://openweathermap.org/data/2.5/find?q=";
-
-	@RequestMapping(value="find", method=RequestMethod.GET)
-	public ResponseEntity<String> findCity(
-	        @RequestParam("cityName") String cityName
-	) throws Exception {
-		String url = baseUrlApi + cityName + "&appid=" + apiID;
-		RestTemplate restTemplate = new RestTemplate();
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-		HttpEntity<String> entity = new HttpEntity<String>("parameter", headers);
-
-		try {
-			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-			return response;
-		} catch (HttpServerErrorException e) {
-			throw new HttpBadRequestException("Erro ao consultar cidade", e);
-		} catch (Exception e) {
-			throw new HttpBadRequestException("Erro ao processar informação", e);
-		}
-
-	}
 
 	@RequestMapping(value="/lista", method=RequestMethod.GET)
 	public List<CidadeDTO> findAll() throws ObjectNotFoundException {
