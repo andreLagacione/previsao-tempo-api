@@ -14,10 +14,10 @@ public class SearchResource {
     private SearchService searchService;
 
     @RequestMapping(value="/city", method= RequestMethod.GET)
-    public ResponseEntity<String> findCity(
+    public ResponseEntity<SearchCityDTO> findCity(
             @RequestParam("name") String name
     ) throws Exception {
-
+        return this.searchService.findCity(name);
 
     }
 }
