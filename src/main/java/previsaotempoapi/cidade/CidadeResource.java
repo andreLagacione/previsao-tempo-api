@@ -30,14 +30,14 @@ import previsaotempoapi.commons.services.exceptions.HttpBadRequestException;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/cidades")
+@RequestMapping(value = "/cities")
 public class CidadeResource {
 	@Autowired
 	private CidadeService cidadeService;
 
-	@RequestMapping(value="/lista", method=RequestMethod.GET)
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public List<CidadeDTO> findAll() throws ObjectNotFoundException {
-		List<Cidade> cidades = cidadeService.findAll();
+		List<Cidade> cidades = this.cidadeService.findAll();
 		List<CidadeDTO> cidadeDTO = cidades.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());
 		return cidadeDTO;
 	}
@@ -49,21 +49,21 @@ public class CidadeResource {
 		@RequestParam(value="orderBy", defaultValue="nome") String orderBy,
 		@RequestParam(value="direction", defaultValue="ASC") String direction
 	) {
-		Page<Cidade> cidades = cidadeService.findPage(page, size, orderBy, direction);
+		Page<Cidade> cidades = this.cidadeService.findPage(page, size, orderBy, direction);
 		Page<CidadeDTO> cidadeDTO = cidades.map(obj -> new CidadeDTO(obj));
 		return ResponseEntity.ok().body(cidadeDTO);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Cidade> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Cidade cidade = cidadeService.find(id);
+		Cidade cidade = this.cidadeService.find(id);
 		return ResponseEntity.ok().body(cidade);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CidadeDTO cidadeDTO) {
-		Cidade cidade = cidadeService.fromDto(cidadeDTO);
-		cidade = cidadeService.insert(cidade);
+		Cidade cidade = this.cidadeService.fromDto(cidadeDTO);
+		cidade = this.cidadeService.insert(cidade);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").buildAndExpand(cidade.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -74,15 +74,15 @@ public class CidadeResource {
 		@Valid @RequestBody CidadeDTO cidadeDTO,
 		@PathVariable Integer id
 	) throws ObjectNotFoundException {
-		Cidade cidade = cidadeService.fromDto(cidadeDTO);
+		Cidade cidade = this.cidadeService.fromDto(cidadeDTO);
 		cidade.setId(id);
-		cidade = cidadeService.update(cidade);
+		cidade = this.cidadeService.update(cidade);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) throws ObjectNotFoundException {
-		cidadeService.delete(id);
+		this.cidadeService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }

@@ -1,8 +1,10 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 public class WindDTO {
     private Double speed;
     private Double deg;
+
+    public WindDTO() {}
 
     public WindDTO(Double speed, Double deg) {
         this.speed = speed;

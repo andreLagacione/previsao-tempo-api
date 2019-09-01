@@ -1,7 +1,9 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 public class CloudsDTO {
     private Double all;
+
+    public CloudsDTO() {}
 
     public CloudsDTO(Double all) {
         this.all = all;

@@ -1,9 +1,9 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 import java.util.List;
 
 public class ResultSearchCityDTO {
-    private Double id;
+    private Integer id;
     private String name;
     private CoordDTO coord;
     private MainDTO main;
@@ -15,7 +15,9 @@ public class ResultSearchCityDTO {
     private CloudsDTO clouds;
     private List<WeatherDTO> weather;
 
-    public ResultSearchCityDTO(Double id, String name, CoordDTO coord, MainDTO main, Double dt, WindDTO wind, SysDTO sys, String rain, String snow, CloudsDTO clouds, List<WeatherDTO> weather) {
+    public ResultSearchCityDTO() {}
+
+    public ResultSearchCityDTO(Integer id, String name, CoordDTO coord, MainDTO main, Double dt, WindDTO wind, SysDTO sys, String rain, String snow, CloudsDTO clouds, List<WeatherDTO> weather) {
         this.id = id;
         this.name = name;
         this.coord = coord;
@@ -29,11 +31,11 @@ public class ResultSearchCityDTO {
         this.weather = weather;
     }
 
-    public Double getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Double id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

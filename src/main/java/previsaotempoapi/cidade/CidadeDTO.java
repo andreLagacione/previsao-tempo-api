@@ -9,12 +9,14 @@ public class CidadeDTO implements Serializable {
 	
 	private Integer id;
 	private String nome;
+	private String apelido;
 	
 	public CidadeDTO() {}
 	
 	public CidadeDTO(Cidade cidade) {
 		id = cidade.getId();
 		nome = cidade.getNome();
+		apelido = cidade.getApelido();
 	}
 
 	public Integer getId() {
@@ -33,4 +35,11 @@ public class CidadeDTO implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
 }

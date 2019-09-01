@@ -53,10 +53,10 @@ public class CidadeService {
 	}
 	
 	public Cidade fromDto(CidadeDTO cidadeDTO) {
-		return new Cidade(cidadeDTO.getId(), cidadeDTO.getNome());
+		return new Cidade(cidadeDTO.getId(), cidadeDTO.getNome(), cidadeDTO.getApelido());
 	}
 	
 	public void updateData(Cidade newCidade, Cidade cidade) {
-		newCidade.setNome(cidade.getNome());
+		newCidade.setApelido(cidade.getApelido());
 	}
 }

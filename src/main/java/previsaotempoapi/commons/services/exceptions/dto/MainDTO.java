@@ -1,4 +1,4 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 public class MainDTO {
     private Double temp;
@@ -6,6 +6,8 @@ public class MainDTO {
     private Double humidity;
     private Double temp_min;
     private Double temp_max;
+
+    public MainDTO() {}
 
     public MainDTO(Double temp, Double pressure, Double humidity, Double temp_min, Double temp_max) {
         this.temp = temp;

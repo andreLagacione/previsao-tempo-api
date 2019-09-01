@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -14,10 +15,9 @@ public class SearchResource {
     private SearchService searchService;
 
     @RequestMapping(value="/city", method= RequestMethod.GET)
-    public ResponseEntity<SearchCityDTO> findCity(
+    public List<SearchCityDTO> findCity(
             @RequestParam("name") String name
     ) throws Exception {
         return this.searchService.findCity(name);
-
     }
 }

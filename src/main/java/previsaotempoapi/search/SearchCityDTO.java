@@ -2,29 +2,18 @@ package previsaotempoapi.search;
 
 public class SearchCityDTO {
 
-    private Integer id;
     private Integer idOpenWeather;
     private String name;
-    private String temperature;
+    private Double temperature;
     private String country;
 
     public SearchCityDTO() {}
 
-    public SearchCityDTO(Integer id, Integer idOpenWeather, String name, String temperature, String country) {
-        super();
-        this.id = id;
+    public SearchCityDTO(Integer idOpenWeather, String name, Double temperature, String country) {
         this.idOpenWeather = idOpenWeather;
         this.name = name;
         this.temperature = temperature;
         this.country = country;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getIdOpenWeather() {
@@ -43,11 +32,11 @@ public class SearchCityDTO {
         this.name = name;
     }
 
-    public String getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 

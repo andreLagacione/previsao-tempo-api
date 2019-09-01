@@ -1,10 +1,12 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 public class WeatherDTO {
     private Double id;
     private String main;
     private String description;
     private String icon;
+
+    public WeatherDTO() {}
 
     public WeatherDTO(Double id, String main, String description, String icon) {
         this.id = id;

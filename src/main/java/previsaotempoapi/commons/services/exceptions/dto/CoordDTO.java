@@ -1,8 +1,10 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 public class CoordDTO {
     private Double lat;
     private Double lon;
+
+    public CoordDTO() {}
 
     public CoordDTO(Double lat, Double lon) {
         this.lat = lat;

@@ -1,7 +1,9 @@
-package previsaotempoapi.search.dto;
+package previsaotempoapi.commons.services.exceptions.dto;
 
 public class SysDTO {
     private String country;
+
+    public SysDTO() {}
 
     public SysDTO(String country) {
         this.country = country;

@@ -11,16 +11,16 @@ public class SearchCity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private Integer idOpenWeather;
     private String name;
-    private String temperature;
+    private Double temperature;
     private String country;
 
     public SearchCity() {}
 
-    public SearchCity(Integer id, Integer idOpenWeather, String name, String temperature, String country) {
+    public SearchCity(Integer id, Integer idOpenWeather, String name, Double temperature, String country) {
         super();
         this.id = id;
         this.idOpenWeather = idOpenWeather;
@@ -53,11 +53,11 @@ public class SearchCity implements Serializable {
         this.name = name;
     }
 
-    public String getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 
