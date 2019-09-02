@@ -34,7 +34,7 @@ public class SearchService {
             ResponseEntity<OpenWeatherResultDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, OpenWeatherResultDTO.class);
             return mapPropsResponse(response);
         } catch (HttpServerErrorException e) {
-            throw new HttpBadRequestException("Erro ao consultar cidade", e);
+            throw new HttpBadRequestException("Erro ao pesquisar cidade", e);
         } catch (Exception e) {
             throw new HttpBadRequestException("Erro ao processar informação", e);
         }

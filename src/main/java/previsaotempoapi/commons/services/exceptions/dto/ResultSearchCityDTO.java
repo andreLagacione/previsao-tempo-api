@@ -11,13 +11,13 @@ public class ResultSearchCityDTO {
     private WindDTO wind;
     private SysDTO sys;
     private String rain;
-    private String snow;
+    private Snow snow;
     private CloudsDTO clouds;
     private List<WeatherDTO> weather;
 
     public ResultSearchCityDTO() {}
 
-    public ResultSearchCityDTO(Integer id, String name, CoordDTO coord, MainDTO main, Double dt, WindDTO wind, SysDTO sys, String rain, String snow, CloudsDTO clouds, List<WeatherDTO> weather) {
+    public ResultSearchCityDTO(Integer id, String name, CoordDTO coord, MainDTO main, Double dt, WindDTO wind, SysDTO sys, String rain, Snow snow, CloudsDTO clouds, List<WeatherDTO> weather) {
         this.id = id;
         this.name = name;
         this.coord = coord;
@@ -95,11 +95,11 @@ public class ResultSearchCityDTO {
         this.rain = rain;
     }
 
-    public String getSnow() {
+    public Snow getSnow() {
         return snow;
     }
 
-    public void setSnow(String snow) {
+    public void setSnow(Snow snow) {
         this.snow = snow;
     }
 
