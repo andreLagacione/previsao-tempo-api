@@ -72,6 +72,7 @@ public class ForecastService {
         }
 
         forecast.setResult(forecastPerDay);
+        forecast.setCityName(cityName);
 
         return forecast;
     }

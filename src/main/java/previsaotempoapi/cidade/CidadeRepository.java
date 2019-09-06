@@ -1,7 +1,8 @@
 package previsaotempoapi.cidade;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, Integer> { }
+public interface CidadeRepository extends MongoRepository<Cidade, Integer> { }
