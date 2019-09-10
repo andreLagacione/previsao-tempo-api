@@ -55,7 +55,7 @@ public class CidadeResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Cidade> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<Cidade> find(@PathVariable String id) throws ObjectNotFoundException {
 		Cidade cidade = this.cidadeService.find(id);
 		return ResponseEntity.ok().body(cidade);
 	}
@@ -72,7 +72,7 @@ public class CidadeResource {
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(
 		@Valid @RequestBody CidadeDTO cidadeDTO,
-		@PathVariable Integer id
+		@PathVariable String id
 	) throws ObjectNotFoundException {
 		Cidade cidade = this.cidadeService.fromDto(cidadeDTO);
 		cidade.setId(id);
@@ -81,7 +81,7 @@ public class CidadeResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<Void> delete(@PathVariable String id) throws ObjectNotFoundException {
 		this.cidadeService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

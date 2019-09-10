@@ -7,9 +7,10 @@ import previsaotempoapi.cidade.Cidade;
 public class CidadeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	private String id;
 	private String nome;
 	private String apelido;
+	private String idOpenWeather;
 	
 	public CidadeDTO() {}
 	
@@ -17,13 +18,14 @@ public class CidadeDTO implements Serializable {
 		id = cidade.getId();
 		nome = cidade.getNome();
 		apelido = cidade.getApelido();
+		idOpenWeather = cidade.getIdOpenWeather();
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -41,5 +43,13 @@ public class CidadeDTO implements Serializable {
 
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
+	}
+
+	public String getIdOpenWeather() {
+		return idOpenWeather;
+	}
+
+	public void setIdOpenWeather(String idOpenWeather) {
+		this.idOpenWeather = idOpenWeather;
 	}
 }

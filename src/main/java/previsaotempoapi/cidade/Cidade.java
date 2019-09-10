@@ -1,5 +1,7 @@
 package previsaotempoapi.cidade;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -7,30 +9,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Document(collection = "cidade")
 @Entity
 public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private String id;
 	private String nome;
 	private String apelido;
+	private String idOpenWeather;
 	
 	public Cidade() {}
 
-	public Cidade(Integer id, String nome, String apelido) {
+	public Cidade(String id, String nome, String apelido, String idOpenWeather) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.apelido = apelido;
+		this.idOpenWeather = idOpenWeather;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -50,4 +55,11 @@ public class Cidade implements Serializable {
 		this.apelido = apelido;
 	}
 
+	public String getIdOpenWeather() {
+		return idOpenWeather;
+	}
+
+	public void setIdOpenWeather(String idOpenWeather) {
+		this.idOpenWeather = idOpenWeather;
+	}
 }
