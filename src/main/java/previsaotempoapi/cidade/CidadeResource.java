@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,13 @@ public class CidadeResource {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public List<CidadeDTO> findAll() throws ObjectNotFoundException {
 		List<Cidade> cidades = this.cidadeService.findAll();
+		List<CidadeDTO> cidadeDTO = cidades.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());
+		return cidadeDTO;
+	}
+
+	@RequestMapping(value="/find", method=RequestMethod.GET)
+	public List<CidadeDTO> findByName(@RequestParam("name") String name) throws ObjectNotFoundException {
+		List<Cidade> cidades = this.cidadeService.findByName(name);
 		List<CidadeDTO> cidadeDTO = cidades.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());
 		return cidadeDTO;
 	}

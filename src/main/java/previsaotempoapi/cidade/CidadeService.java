@@ -20,6 +20,10 @@ public class CidadeService {
 	public List<Cidade> findAll() {
 		return cidadeRepository.findAll();
 	}
+
+	public List<Cidade> findByName(String name) {
+		return cidadeRepository.findByNome(name);
+	}
 	
 	public Page<Cidade> findPage(Integer page, Integer size, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, size, Direction.valueOf(direction), orderBy);
