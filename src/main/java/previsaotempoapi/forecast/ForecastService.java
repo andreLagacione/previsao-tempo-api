@@ -24,7 +24,7 @@ public class ForecastService {
     final String apiID = "b6907d289e10d714a6e88b30761fae22";
     final String baseUrlApi = "https://samples.openweathermap.org/data/2.5/forecast?id=";
 
-    public ForecastDTO getForecast(Integer cityId, String cityName) throws Exception {
+    public ForecastDTO getForecast(String cityId, String cityName) throws Exception {
         String url = baseUrlApi + cityId + "&appid=" + apiID;
         RestTemplate restTemplate = new RestTemplate();
 

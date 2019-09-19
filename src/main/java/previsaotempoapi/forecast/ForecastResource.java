@@ -12,7 +12,7 @@ public class ForecastResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public ForecastDTO getForecast(
-            @RequestParam("cityId") Integer cityId,
+            @RequestParam("cityId") String cityId,
             @RequestParam("cityName") String cityName
     ) throws Exception {
         return this.forecastService.getForecast(cityId, cityName);
