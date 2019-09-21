@@ -1,24 +1,22 @@
-package previsaotempoapi.commons.services.exceptions.dto;
+package previsaotempoapi.commons.dto;
 
 public class CityDTO {
     private Double id;
     private String name;
     private CoordDTO coord;
     private String country;
+    private Double population;
     private Double timezone;
-    private Double sunrise;
-    private Double sunset;
 
     public CityDTO() {}
 
-    public CityDTO(Double id, String name, CoordDTO coord, String country, Double timezone, Double sunrise, Double sunset) {
+    public CityDTO(Double id, String name, CoordDTO coord, String country, Double population, Double timezone) {
         this.id = id;
         this.name = name;
         this.coord = coord;
         this.country = country;
+        this.population = population;
         this.timezone = timezone;
-        this.sunrise = sunrise;
-        this.sunset = sunset;
     }
 
     public Double getId() {
@@ -53,27 +51,19 @@ public class CityDTO {
         this.country = country;
     }
 
+    public Double getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(Double population) {
+        this.population = population;
+    }
+
     public Double getTimezone() {
         return timezone;
     }
 
     public void setTimezone(Double timezone) {
         this.timezone = timezone;
-    }
-
-    public Double getSunrise() {
-        return sunrise;
-    }
-
-    public void setSunrise(Double sunrise) {
-        this.sunrise = sunrise;
-    }
-
-    public Double getSunset() {
-        return sunset;
-    }
-
-    public void setSunset(Double sunset) {
-        this.sunset = sunset;
     }
 }

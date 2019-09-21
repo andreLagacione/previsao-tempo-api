@@ -14,7 +14,6 @@ public class ForecastResultDTO implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private Double humidity;
-    private String rain;
     private Double temperature;
     private Double temperatureMin;
     private Double temperatureMax;
@@ -23,6 +22,10 @@ public class ForecastResultDTO implements Serializable {
     private String weatherIcon;
     private Long data;
     private String weekDay;
+    private String backgroundName;
+    private Double rain;
+
+    private Double snow;
 
     @ManyToOne
     @JoinColumn(name="forecast_id")
@@ -30,10 +33,9 @@ public class ForecastResultDTO implements Serializable {
 
     public ForecastResultDTO() {}
 
-    public ForecastResultDTO(Integer id, Double humidity, String rain, Double temperature, Double temperatureMin, Double temperatureMax, String weatherDescription, String mainWeather, String weatherIcon, Long data, Forecast forecast, String weekDay) {
+    public ForecastResultDTO(Integer id, Double humidity, Double temperature, Double temperatureMin, Double temperatureMax, String weatherDescription, String mainWeather, String weatherIcon, Long data, String weekDay, String backgroundName, Double rain, Double snow) {
         this.id = id;
         this.humidity = humidity;
-        this.rain = rain;
         this.temperature = temperature;
         this.temperatureMin = temperatureMin;
         this.temperatureMax = temperatureMax;
@@ -41,8 +43,10 @@ public class ForecastResultDTO implements Serializable {
         this.mainWeather = mainWeather;
         this.weatherIcon = weatherIcon;
         this.data = data;
-        this.forecast = forecast;
         this.weekDay = weekDay;
+        this.backgroundName = backgroundName;
+        this.rain = rain;
+        this.snow = snow;
     }
 
     public Integer getId() {
@@ -59,14 +63,6 @@ public class ForecastResultDTO implements Serializable {
 
     public void setHumidity(Double humidity) {
         this.humidity = humidity;
-    }
-
-    public String getRain() {
-        return rain;
-    }
-
-    public void setRain(String rain) {
-        this.rain = rain;
     }
 
     public Double getTemperature() {
@@ -125,19 +121,35 @@ public class ForecastResultDTO implements Serializable {
         this.data = data;
     }
 
-    public Forecast getForecast() {
-        return forecast;
-    }
-
-    public void setForecast(Forecast forecast) {
-        this.forecast = forecast;
-    }
-
     public String getWeekDay() {
         return weekDay;
     }
 
     public void setWeekDay(String weekDay) {
         this.weekDay = weekDay;
+    }
+
+    public String getBackgroundName() {
+        return backgroundName;
+    }
+
+    public void setBackgroundName(String backgroundName) {
+        this.backgroundName = backgroundName;
+    }
+
+    public Double getRain() {
+        return rain;
+    }
+
+    public void setRain(Double rain) {
+        this.rain = rain;
+    }
+
+    public Double getSnow() {
+        return snow;
+    }
+
+    public void setSnow(Double snow) {
+        this.snow = snow;
     }
 }

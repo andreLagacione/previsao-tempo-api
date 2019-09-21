@@ -6,11 +6,12 @@ import java.util.List;
 
 public class ForecastDTO {
     private String cityName;
+    private String country;
     private List<ForecastResultDTO> result;
 
     public ForecastDTO() {}
 
-    public ForecastDTO(String cityName, List<ForecastResultDTO> result) {
+    public ForecastDTO(String cityName, String country, List<ForecastResultDTO> result) {
         this.cityName = cityName;
         this.result = result;
     }
@@ -29,5 +30,13 @@ public class ForecastDTO {
 
     public void setResult(List<ForecastResultDTO> result) {
         this.result = result;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

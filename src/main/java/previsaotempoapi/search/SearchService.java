@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import previsaotempoapi.commons.services.exceptions.HttpBadRequestException;
-import previsaotempoapi.commons.services.exceptions.dto.OpenWeatherResultDTO;
-import previsaotempoapi.commons.services.exceptions.dto.ResultSearchCityDTO;
+import previsaotempoapi.commons.dto.ListForecastDTO;
+import previsaotempoapi.commons.dto.OpenWeatherResultDTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class SearchService {
     @Autowired
     private SearchCityRepository searchCityRepository;
 
-    final String apiID = "b6907d289e10d714a6e88b30761fae22";
+    final String apiID = "6f01995805365a0614e91b75b103cdd3";
     final String baseUrlApi = "https://openweathermap.org/data/2.5/find?q=";
 
     public List<SearchCityDTO> findCity(String name) throws Exception {
@@ -42,14 +42,14 @@ public class SearchService {
 
     private List<SearchCityDTO> mapPropsResponse(ResponseEntity<OpenWeatherResultDTO> response) {
         List<SearchCityDTO> cities = new ArrayList<>();
-        List<ResultSearchCityDTO> listCities = response.getBody().getList();
+        List<ListForecastDTO> listCities = response.getBody().getList();
 
-        for (ResultSearchCityDTO city : listCities) {
+        for (ListForecastDTO city : listCities) {
             SearchCityDTO newCity = new SearchCityDTO();
-            // newCity.setIdOpenWeather(city.getId());
-            // newCity.setName(city.getName());
-            newCity.setTemperature(city.getMain().getTemp());
-            newCity.setCountry(city.getSys().getCountry());
+//            newCity.setIdOpenWeather(city.getId());
+//            newCity.setName(city.getName());
+//            newCity.setTemperature(city.getMain().getTemp());
+//            newCity.setCountry(city.getSys().getCountry());
             cities.add(newCity);
         }
 

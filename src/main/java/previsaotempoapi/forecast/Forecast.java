@@ -15,6 +15,7 @@ public class Forecast implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String cityName;
+    private String country;
 
     @JsonIgnore
     @OneToMany(mappedBy = "forecast")
@@ -22,9 +23,10 @@ public class Forecast implements Serializable {
 
     public Forecast() {}
 
-    public Forecast(Integer id, String cityName, List<ForecastResultDTO> result) {
+    public Forecast(Integer id, String cityName, String country, List<ForecastResultDTO> result) {
         this.id = id;
         this.cityName = cityName;
+        this.country = country;
         this.result = result;
     }
 
@@ -50,5 +52,13 @@ public class Forecast implements Serializable {
 
     public void setResult(List<ForecastResultDTO> result) {
         this.result = result;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
