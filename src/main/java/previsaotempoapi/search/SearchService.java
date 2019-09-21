@@ -46,8 +46,8 @@ public class SearchService {
 
         for (ResultSearchCityDTO city : listCities) {
             SearchCityDTO newCity = new SearchCityDTO();
-            newCity.setIdOpenWeather(city.getId());
-            newCity.setName(city.getName());
+            // newCity.setIdOpenWeather(city.getId());
+            // newCity.setName(city.getName());
             newCity.setTemperature(city.getMain().getTemp());
             newCity.setCountry(city.getSys().getCountry());
             cities.add(newCity);

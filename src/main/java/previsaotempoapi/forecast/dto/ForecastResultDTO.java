@@ -22,6 +22,7 @@ public class ForecastResultDTO implements Serializable {
     private String mainWeather;
     private String weatherIcon;
     private Long data;
+    private String weekDay;
 
     @ManyToOne
     @JoinColumn(name="forecast_id")
@@ -29,7 +30,7 @@ public class ForecastResultDTO implements Serializable {
 
     public ForecastResultDTO() {}
 
-    public ForecastResultDTO(Integer id, Double humidity, String rain, Double temperature, Double temperatureMin, Double temperatureMax, String weatherDescription, String mainWeather, String weatherIcon, Long data, Forecast forecast) {
+    public ForecastResultDTO(Integer id, Double humidity, String rain, Double temperature, Double temperatureMin, Double temperatureMax, String weatherDescription, String mainWeather, String weatherIcon, Long data, Forecast forecast, String weekDay) {
         this.id = id;
         this.humidity = humidity;
         this.rain = rain;
@@ -41,6 +42,7 @@ public class ForecastResultDTO implements Serializable {
         this.weatherIcon = weatherIcon;
         this.data = data;
         this.forecast = forecast;
+        this.weekDay = weekDay;
     }
 
     public Integer getId() {
@@ -129,5 +131,13 @@ public class ForecastResultDTO implements Serializable {
 
     public void setForecast(Forecast forecast) {
         this.forecast = forecast;
+    }
+
+    public String getWeekDay() {
+        return weekDay;
+    }
+
+    public void setWeekDay(String weekDay) {
+        this.weekDay = weekDay;
     }
 }

@@ -3,64 +3,26 @@ package previsaotempoapi.commons.services.exceptions.dto;
 import java.util.List;
 
 public class ResultSearchCityDTO {
-    private Integer id;
-    private String name;
-    private CoordDTO coord;
-    private MainDTO main;
     private Double dt;
-    private WindDTO wind;
-    private SysDTO sys;
-    private String rain;
-    private Snow snow;
-    private CloudsDTO clouds;
+    private MainDTO main;
     private List<WeatherDTO> weather;
+    private CloudsDTO clouds;
+    private WindDTO wind;
+    private RainDTO rain;
+    private SysDTO sys;
+    private String dt_txt;
 
     public ResultSearchCityDTO() {}
 
-    public ResultSearchCityDTO(Integer id, String name, CoordDTO coord, MainDTO main, Double dt, WindDTO wind, SysDTO sys, String rain, Snow snow, CloudsDTO clouds, List<WeatherDTO> weather) {
-        this.id = id;
-        this.name = name;
-        this.coord = coord;
-        this.main = main;
+    public ResultSearchCityDTO(Double dt, MainDTO main, List<WeatherDTO> weather, CloudsDTO clouds, WindDTO wind, RainDTO rain, SysDTO sys, String dt_txt) {
         this.dt = dt;
-        this.wind = wind;
-        this.sys = sys;
-        this.rain = rain;
-        this.snow = snow;
-        this.clouds = clouds;
-        this.weather = weather;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public CoordDTO getCoord() {
-        return coord;
-    }
-
-    public void setCoord(CoordDTO coord) {
-        this.coord = coord;
-    }
-
-    public MainDTO getMain() {
-        return main;
-    }
-
-    public void setMain(MainDTO main) {
         this.main = main;
+        this.weather = weather;
+        this.clouds = clouds;
+        this.wind = wind;
+        this.rain = rain;
+        this.sys = sys;
+        this.dt_txt = dt_txt;
     }
 
     public Double getDt() {
@@ -71,36 +33,20 @@ public class ResultSearchCityDTO {
         this.dt = dt;
     }
 
-    public WindDTO getWind() {
-        return wind;
+    public MainDTO getMain() {
+        return main;
     }
 
-    public void setWind(WindDTO wind) {
-        this.wind = wind;
+    public void setMain(MainDTO main) {
+        this.main = main;
     }
 
-    public SysDTO getSys() {
-        return sys;
+    public List<WeatherDTO> getWeather() {
+        return weather;
     }
 
-    public void setSys(SysDTO sys) {
-        this.sys = sys;
-    }
-
-    public String getRain() {
-        return rain;
-    }
-
-    public void setRain(String rain) {
-        this.rain = rain;
-    }
-
-    public Snow getSnow() {
-        return snow;
-    }
-
-    public void setSnow(Snow snow) {
-        this.snow = snow;
+    public void setWeather(List<WeatherDTO> weather) {
+        this.weather = weather;
     }
 
     public CloudsDTO getClouds() {
@@ -111,11 +57,35 @@ public class ResultSearchCityDTO {
         this.clouds = clouds;
     }
 
-    public List<WeatherDTO> getWeather() {
-        return weather;
+    public WindDTO getWind() {
+        return wind;
     }
 
-    public void setWeather(List<WeatherDTO> weather) {
-        this.weather = weather;
+    public void setWind(WindDTO wind) {
+        this.wind = wind;
+    }
+
+    public RainDTO getRain() {
+        return rain;
+    }
+
+    public void setRain(RainDTO rain) {
+        this.rain = rain;
+    }
+
+    public SysDTO getSys() {
+        return sys;
+    }
+
+    public void setSys(SysDTO sys) {
+        this.sys = sys;
+    }
+
+    public String getDt_txt() {
+        return dt_txt;
+    }
+
+    public void setDt_txt(String dt_txt) {
+        this.dt_txt = dt_txt;
     }
 }

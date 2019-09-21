@@ -77,17 +77,6 @@ public class CidadeResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(
-		@Valid @RequestBody CidadeDTO cidadeDTO,
-		@PathVariable String id
-	) throws ObjectNotFoundException {
-		Cidade cidade = this.cidadeService.fromDto(cidadeDTO);
-		cidade.setId(id);
-		cidade = this.cidadeService.update(cidade);
-		return ResponseEntity.noContent().build();
-	}
-	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable String id) throws ObjectNotFoundException {
 		this.cidadeService.delete(id);

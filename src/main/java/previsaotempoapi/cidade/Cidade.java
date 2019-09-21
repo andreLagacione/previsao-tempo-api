@@ -18,17 +18,17 @@ public class Cidade implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
 	private String nome;
-	private String apelido;
 	private String idOpenWeather;
-	
+	private String country;
+
 	public Cidade() {}
 
-	public Cidade(String id, String nome, String apelido, String idOpenWeather) {
+	public Cidade(String id, String nome, String idOpenWeather, String country) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.apelido = apelido;
 		this.idOpenWeather = idOpenWeather;
+		this.country = country;
 	}
 
 	public String getId() {
@@ -47,19 +47,19 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getApelido() {
-		return apelido;
-	}
-
-	public void setApelido(String apelido) {
-		this.apelido = apelido;
-	}
-
 	public String getIdOpenWeather() {
 		return idOpenWeather;
 	}
 
 	public void setIdOpenWeather(String idOpenWeather) {
 		this.idOpenWeather = idOpenWeather;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }

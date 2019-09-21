@@ -9,16 +9,16 @@ public class CidadeDTO implements Serializable {
 	
 	private String id;
 	private String nome;
-	private String apelido;
 	private String idOpenWeather;
+	private String country;
 	
 	public CidadeDTO() {}
 	
 	public CidadeDTO(Cidade cidade) {
 		id = cidade.getId();
 		nome = cidade.getNome();
-		apelido = cidade.getApelido();
 		idOpenWeather = cidade.getIdOpenWeather();
+		country = cidade.getCountry();
 	}
 
 	public String getId() {
@@ -37,19 +37,19 @@ public class CidadeDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getApelido() {
-		return apelido;
-	}
-
-	public void setApelido(String apelido) {
-		this.apelido = apelido;
-	}
-
 	public String getIdOpenWeather() {
 		return idOpenWeather;
 	}
 
 	public void setIdOpenWeather(String idOpenWeather) {
 		this.idOpenWeather = idOpenWeather;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }

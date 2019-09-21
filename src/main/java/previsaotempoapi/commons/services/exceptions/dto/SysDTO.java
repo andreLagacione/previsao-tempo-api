@@ -1,19 +1,19 @@
 package previsaotempoapi.commons.services.exceptions.dto;
 
 public class SysDTO {
-    private String country;
+    private String prod;
 
     public SysDTO() {}
 
-    public SysDTO(String country) {
-        this.country = country;
+    public SysDTO(String prod) {
+        this.prod = prod;
     }
 
     public String getCountry() {
-        return country;
+        return prod;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(String prod) {
+        this.prod = prod;
     }
 }

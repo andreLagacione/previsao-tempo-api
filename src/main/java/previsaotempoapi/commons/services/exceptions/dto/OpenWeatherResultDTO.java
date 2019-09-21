@@ -1,20 +1,24 @@
 package previsaotempoapi.commons.services.exceptions.dto;
 
+import previsaotempoapi.cidade.CidadeDTO;
+
 import java.util.List;
 
 public class OpenWeatherResultDTO {
     private String message;
     private String cod;
-    private Integer count;
+    private Integer cnt;
     private List<ResultSearchCityDTO> list;
+    private CityDTO city;
 
     public OpenWeatherResultDTO() {}
 
-    public OpenWeatherResultDTO(String message, String cod, Integer count, List<ResultSearchCityDTO> list) {
+    public OpenWeatherResultDTO(String message, String cod, Integer cnt, List<ResultSearchCityDTO> list, CityDTO city) {
         this.message = message;
         this.cod = cod;
-        this.count = count;
+        this.cnt = cnt;
         this.list = list;
+        this.city = city;
     }
 
     public String getMessage() {
@@ -34,11 +38,11 @@ public class OpenWeatherResultDTO {
     }
 
     public Integer getCount() {
-        return count;
+        return cnt;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setCount(Integer cnt) {
+        this.cnt = cnt;
     }
 
     public List<ResultSearchCityDTO> getList() {
@@ -47,5 +51,21 @@ public class OpenWeatherResultDTO {
 
     public void setList(List<ResultSearchCityDTO> list) {
         this.list = list;
+    }
+
+    public Integer getCnt() {
+        return cnt;
+    }
+
+    public void setCnt(Integer cnt) {
+        this.cnt = cnt;
+    }
+
+    public CityDTO getCity() {
+        return city;
+    }
+
+    public void setCity(CityDTO city) {
+        this.city = city;
     }
 }
