@@ -10,10 +10,18 @@ public class ForecastResource {
     @Autowired
     private ForecastService forecastService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ForecastDTO getForecast(
+    @RequestMapping(value = "/by-id", method = RequestMethod.GET)
+    public ForecastDTO getForecastById(
             @RequestParam("cityId") String cityId
     ) throws Exception {
-        return this.forecastService.getForecast(cityId);
+        return this.forecastService.getForecast("&id=" + cityId);
+    }
+
+    @RequestMapping(value = "/by-coords", method = RequestMethod.GET)
+    public ForecastDTO getForecastLatAndLon(
+            @RequestParam("lat") String lat,
+            @RequestParam("lon") String lon
+    ) throws Exception {
+        return this.forecastService.getForecast("&lat=" + lat + "&lon=" + lon);
     }
 }

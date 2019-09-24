@@ -22,8 +22,8 @@ public class ForecastService {
     @Autowired
     private ForescastRepository forescastRepository;
 
-    public ForecastDTO getForecast(String cityId) throws Exception {
-        String url = "https://api.openweathermap.org/data/2.5/forecast/daily?appid=6f01995805365a0614e91b75b103cdd3&cnt=6&units=metric&lang=pt&id=" + cityId;
+    public ForecastDTO getForecast(String path) throws Exception {
+        String url = "https://api.openweathermap.org/data/2.5/forecast/daily?appid=6f01995805365a0614e91b75b103cdd3&cnt=6&units=metric&lang=pt" + path;
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
