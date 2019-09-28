@@ -53,7 +53,7 @@ public class CidadeResource {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<Page<CidadeDTO>> findPage(
 		@RequestParam(value="page", defaultValue="0") Integer page,
-		@RequestParam(value="size", defaultValue="25") Integer size,
+		@RequestParam(value="size", defaultValue="250000") Integer size,
 		@RequestParam(value="orderBy", defaultValue="nome") String orderBy,
 		@RequestParam(value="direction", defaultValue="ASC") String direction
 	) {

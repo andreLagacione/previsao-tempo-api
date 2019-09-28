@@ -1,21 +1,13 @@
 package previsaotempoapi.commons.dto;
 
 public class CoordDTO {
-    private Double lon;
     private Double lat;
+    private Double lon;
 
     public CoordDTO() {}
 
-    public CoordDTO(Double lon, Double lat) {
-        this.lon = lon;
+    public CoordDTO(Double lat, Double lon) {
         this.lat = lat;
-    }
-
-    public Double getLon() {
-        return lon;
-    }
-
-    public void setLon(Double lon) {
         this.lon = lon;
     }
 
@@ -25,5 +17,13 @@ public class CoordDTO {
 
     public void setLat(Double lat) {
         this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
     }
 }
