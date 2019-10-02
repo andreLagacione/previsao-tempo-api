@@ -8,7 +8,7 @@ public class CidadeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
-	private String nome;
+	private String name;
 	private String idOpenWeather;
 	private String country;
 	
@@ -16,7 +16,7 @@ public class CidadeDTO implements Serializable {
 	
 	public CidadeDTO(Cidade cidade) {
 		id = cidade.getId();
-		nome = cidade.getNome();
+        name = cidade.getNome();
 		idOpenWeather = cidade.getIdOpenWeather();
 		country = cidade.getCountry();
 	}
@@ -30,11 +30,11 @@ public class CidadeDTO implements Serializable {
 	}
 
 	public String getNome() {
-		return nome;
+		return name;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.name = nome;
 	}
 
 	public String getIdOpenWeather() {
