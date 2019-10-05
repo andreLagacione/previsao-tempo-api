@@ -1,6 +1,7 @@
 package previsaotempoapi.search;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
@@ -17,6 +18,9 @@ import java.util.List;
 public class SearchService {
     @Autowired
     private SearchCityRepository searchCityRepository;
+
+    @Value("${app.openweather.url.searchCity}")
+    private String searchCityUrl;
 
     final String apiID = "b6907d289e10d714a6e88b30761fae22";
     final String baseUrlApi = "https://openweathermap.org/data/2.5/find?q=";
