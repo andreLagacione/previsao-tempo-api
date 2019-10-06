@@ -1,6 +1,10 @@
 package previsaotempoapi.search;
 
-public class SearchCityDTO {
+import java.io.Serializable;
+
+public class SearchCityDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Integer idOpenWeather;
     private String name;

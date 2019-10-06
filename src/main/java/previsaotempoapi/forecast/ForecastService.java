@@ -1,19 +1,17 @@
 package previsaotempoapi.forecast;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import previsaotempoapi.commons.dto.CityDTO;
-import previsaotempoapi.commons.services.exceptions.HttpBadRequestException;
 import previsaotempoapi.commons.dto.ListForecastDTO;
 import previsaotempoapi.commons.dto.OpenWeatherResultDTO;
 import previsaotempoapi.forecast.dto.ForecastResultDTO;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,30 +20,52 @@ public class ForecastService {
     @Autowired
     private ForescastRepository forescastRepository;
 
-    public ForecastDTO getForecast(String path) throws Exception {
-        String url = "https://api.openweathermap.org/data/2.5/forecast/daily?appid=6f01995805365a0614e91b75b103cdd3&cnt=6&units=metric&lang=pt" + path;
-        RestTemplate restTemplate = new RestTemplate();
+    @Value("${app.openWeather.url.getForecast}")
+    private String forecastUrl;
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    @Value("${app.openWeather.forecastKey}")
+    private String openWeatherApiKey;
 
-        HttpEntity<String> entity = new HttpEntity<String>("parameter", headers);
+    @Value("${app.openWeather.totalResults}")
+    private String openWeatherCnt;
 
-        try {
-            ResponseEntity<OpenWeatherResultDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, OpenWeatherResultDTO.class);
-            return mapPropsResponse(response);
-        } catch (HttpServerErrorException e) {
-            throw new HttpBadRequestException("Erro ao buscar previsão para a cidade", e);
-        } catch (Exception e) {
-            throw new HttpBadRequestException("Erro ao processar informação: " + e, e);
+    @Value("${app.openWeather.units}")
+    private String openWeatherUnits;
+
+    @Value("${app.openWeather.lang}")
+    private String openWeatherLang;
+
+    private UriComponentsBuilder uriBuilder(String url, String cityId, String lat, String lon) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(url);
+        uriComponentsBuilder.queryParam("appid", this.openWeatherApiKey);
+        uriComponentsBuilder.queryParam("cnt", openWeatherCnt);
+        uriComponentsBuilder.queryParam("units", openWeatherUnits);
+        uriComponentsBuilder.queryParam("lang", openWeatherLang);
+
+        if (!cityId.isEmpty()) {
+            uriComponentsBuilder.queryParam("id", cityId);
         }
+
+        if (!lat.isEmpty() && !lon.isEmpty()) {
+            uriComponentsBuilder.queryParam("lat", lat);
+            uriComponentsBuilder.queryParam("lon", lon);
+        }
+
+        return uriComponentsBuilder;
     }
 
-    private ForecastDTO mapPropsResponse(ResponseEntity<OpenWeatherResultDTO> response) {
+    public ForecastDTO getForecast(String cityId, String lat, String lon) throws Exception {
+        UriComponentsBuilder uriComponentsBuilder = this.uriBuilder(this.forecastUrl, cityId, lat, lon);
+        RestTemplate restTemplate = new RestTemplate();
+        OpenWeatherResultDTO openWeatherResultDTO = restTemplate.getForObject(uriComponentsBuilder.build().toUri(), OpenWeatherResultDTO.class);
+        return mapPropsResponse(openWeatherResultDTO);
+    }
+
+    private ForecastDTO mapPropsResponse(OpenWeatherResultDTO response) {
         ForecastDTO forecast = new ForecastDTO();
         List<ForecastResultDTO> forecastPerDay = new ArrayList<>();
-        List<ListForecastDTO> listCities = response.getBody().getList();
-        CityDTO cityDto = response.getBody().getCity();
+        List<ListForecastDTO> listCities = response.getList();
+        CityDTO cityDto = response.getCity();
         int dataControl = 0;
 
         for (ListForecastDTO city : listCities) {

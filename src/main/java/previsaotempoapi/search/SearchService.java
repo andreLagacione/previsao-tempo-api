@@ -2,16 +2,13 @@ package previsaotempoapi.search;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import previsaotempoapi.commons.dto.FoundCityDTO;
 import previsaotempoapi.commons.dto.ListSearchCityDTO;
-import previsaotempoapi.commons.services.exceptions.HttpBadRequestException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,34 +16,29 @@ public class SearchService {
     @Autowired
     private SearchCityRepository searchCityRepository;
 
-    @Value("${app.openweather.url.searchCity}")
+    @Value("${app.openWeather.url.searchCity}")
     private String searchCityUrl;
 
-    final String apiID = "b6907d289e10d714a6e88b30761fae22";
-    final String baseUrlApi = "https://openweathermap.org/data/2.5/find?q=";
+    @Value("${app.openWeather.searchKey}")
+    private String openWeatherApiKey;
 
-    public List<SearchCityDTO> findCity(String name) throws Exception {
-        String url = baseUrlApi + name + "&appid=" + apiID;
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-        HttpEntity<String> entity = new HttpEntity<String>("parameter", headers);
-
-        try {
-            ResponseEntity<FoundCityDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, FoundCityDTO.class);
-            return mapPropsResponse(response);
-        } catch (HttpServerErrorException e) {
-            throw new HttpBadRequestException("Erro ao pesquisar cidade", e);
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
+    private UriComponentsBuilder uriBuilder(String value, String url) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(url);
+        uriComponentsBuilder.queryParam("appid", this.openWeatherApiKey);
+        uriComponentsBuilder.queryParam("q", value);
+        return uriComponentsBuilder;
     }
 
-    private List<SearchCityDTO> mapPropsResponse(ResponseEntity<FoundCityDTO> response) {
+    public List<SearchCityDTO> findCity(String name) throws Exception {
+        UriComponentsBuilder uriComponentsBuilder = this.uriBuilder(name, this.searchCityUrl);
+        RestTemplate restTemplate = new RestTemplate();
+        FoundCityDTO foundCityDTO = restTemplate.getForObject(uriComponentsBuilder.build().toUri(), FoundCityDTO.class);
+        return this.mapPropsResponse(foundCityDTO);
+    }
+
+    private List<SearchCityDTO> mapPropsResponse(FoundCityDTO response) {
         List<SearchCityDTO> cities = new ArrayList<>();
-        List<ListSearchCityDTO> listCities = response.getBody().getList();
+        List<ListSearchCityDTO> listCities = response.getList();
 
         for (ListSearchCityDTO city : listCities) {
             SearchCityDTO newCity = new SearchCityDTO();

@@ -14,7 +14,7 @@ public class ForecastResource {
     public ForecastDTO getForecastById(
             @RequestParam("cityId") String cityId
     ) throws Exception {
-        return this.forecastService.getForecast("&id=" + cityId);
+        return this.forecastService.getForecast(cityId, "", "");
     }
 
     @RequestMapping(value = "/by-coords", method = RequestMethod.GET)
@@ -22,6 +22,6 @@ public class ForecastResource {
             @RequestParam("lat") String lat,
             @RequestParam("lon") String lon
     ) throws Exception {
-        return this.forecastService.getForecast("&lat=" + lat + "&lon=" + lon);
+        return this.forecastService.getForecast("", lat, lon);
     }
 }
