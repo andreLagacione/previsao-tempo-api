@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CidadeRepository extends MongoRepository<Cidade, String> {
 
-    @Query(value = "{ 'nome': { $regex: ?0, $options: 'i' } }")
+    @Query(value = "{ 'name': { $regex: ?0, $options: 'i' } }")
     List<Cidade> findByNome(String nome);
 }

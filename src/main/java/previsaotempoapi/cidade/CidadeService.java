@@ -31,7 +31,7 @@ public class CidadeService {
 	}
 	
 	public Cidade find(String id) throws ObjectNotFoundException {
-		Optional<Cidade> cidade = cidadeRepository.findById(id); 
+		Optional<Cidade> cidade = cidadeRepository.findById(id);
 		return cidade.orElseThrow(() -> new ObjectNotFoundException("Cidade não encontrada!"));
 	}
 	
@@ -51,6 +51,6 @@ public class CidadeService {
 	}
 	
 	public Cidade fromDto(CidadeDTO cidadeDTO) {
-		return new Cidade(cidadeDTO.getId(), cidadeDTO.getNome(), cidadeDTO.getIdOpenWeather(), cidadeDTO.getCountry());
+		return new Cidade(cidadeDTO.getId(), cidadeDTO.getName(), cidadeDTO.getIdOpenWeather(), cidadeDTO.getCountry());
 	}
 }
